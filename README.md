@@ -64,7 +64,7 @@ fastbackwardTime
 ```
 
     ##    user  system elapsed 
-    ##    2.39    0.29    2.70
+    ##    2.60    0.25    2.92
 
 ``` r
 ## Timing step function
@@ -73,10 +73,10 @@ stepTime
 ```
 
     ##    user  system elapsed 
-    ##    8.41    0.97    9.42
+    ##    8.58    1.14    9.86
 
 For this logistic regression model, the fast backward elimination
-algorithm from the **fastbackward** package was about 3.49 times faster
+algorithm from the **fastbackward** package was about 3.38 times faster
 than step. The amount of speedup attained from the fast backward
 elimination algorithm depends on the strength of association between the
 covariates and the response variable. So, speedup will vary depending on
