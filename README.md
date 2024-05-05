@@ -3,9 +3,9 @@ fastbackward
 
 # Overview
 
-**fastbackward** is a package with only the `fastbackward()` function,
-which is essentially the same as using backward elimination with the
-`step()` function from the **stats** package. Except the
+**fastbackward** is a package that contains the `fastbackward()`
+function. This function works similarly to backward elimination with the
+`step()` function from the **stats** package; except, the
 `fastbackward()` function makes use of a bounding algorithm to perform
 backward elimination faster.
 
@@ -64,7 +64,7 @@ fastbackwardTime
 ```
 
     ##    user  system elapsed 
-    ##    2.33    0.33    2.71
+    ##    2.39    0.29    2.70
 
 ``` r
 ## Timing step function
@@ -73,14 +73,14 @@ stepTime
 ```
 
     ##    user  system elapsed 
-    ##    7.81    1.59    9.42
+    ##    8.41    0.97    9.42
 
-Using the fast backward elimination algorithm from the **fastbackward**
-package was about 3.48 times faster than step was for this logistic
-regression model. The amount of speedup attained by using the fast
-backward algorithm depends on the strength of association between the
-covariates and the response variable, so it will vary depending on the
-specific problem.
+For this logistic regression model, the fast backward elimination
+algorithm from the **fastbackward** package was about 3.49 times faster
+than step. The amount of speedup attained from the fast backward
+elimination algorithm depends on the strength of association between the
+covariates and the response variable. So, speedup will vary depending on
+the specific problem.
 
 ### Checking results
 
@@ -91,5 +91,5 @@ all.equal(BackwardStep, fastbackward1)
 
     ## [1] TRUE
 
-Hence the two methods give the same results and the fast backward
+Hence, the two methods give the same results and the fast backward
 elimination algorithm is faster than step.

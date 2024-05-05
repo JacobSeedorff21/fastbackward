@@ -5,15 +5,14 @@ output: github_document
 
 # Overview
 
-**fastbackward** is a package with only the `fastbackward()` function, which is 
-essentially the same as using backward elimination with the `step()` function from 
-the **stats** package. Except the `fastbackward()` function makes use of a bounding 
-algorithm to perform backward elimination faster.
+**fastbackward** is a package that contains the `fastbackward()` function. This 
+function works similarly to backward elimination with the `step()` function from 
+the **stats** package; except, the `fastbackward()` function makes use of a 
+bounding algorithm to perform backward elimination faster.
 
 # How to install
 
-It can be installed via the `install_github()` function from the 
-**devtools** package.
+It can be installed via the `install_github()` function from the **devtools** package.
 
 ```{r, eval = FALSE}
 devtools::install_github("JacobSeedorff21/fastbackward")
@@ -69,12 +68,11 @@ stepTime
 
 ```
 
-Using the fast backward elimination algorithm from the **fastbackward** package was 
-about `r round(stepTime[[3]] / fastbackwardTime[[3]], 2)` times faster than step was 
-for this logistic regression model. The amount of speedup attained by using the 
-fast backward algorithm depends on the strength of association between the 
-covariates and the response variable, so it will vary depending on the specific 
-problem.
+For this logistic regression model, the fast backward elimination algorithm from 
+the **fastbackward** package was about `r round(stepTime[[3]] / fastbackwardTime[[3]], 2)` 
+times faster than step. The amount of speedup attained from the fast backward elimination
+algorithm depends on the strength of association between the covariates and the 
+response variable. So, speedup will vary depending on the specific problem.
 
 ### Checking results
 
@@ -84,6 +82,6 @@ all.equal(BackwardStep, fastbackward1)
 
 ```
 
-Hence the two methods give the same results and the fast backward elimination 
+Hence, the two methods give the same results and the fast backward elimination 
 algorithm is faster than step.
 
