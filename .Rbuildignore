@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+README.Rmd
+README.md
+cran-comments.Rmd
+cran-comments.md
+NEWS.Rmd
+NEWS.md

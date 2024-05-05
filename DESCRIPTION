@@ -1,0 +1,17 @@
+Package: fastbackward
+Type: Package
+Title: Fast Backward Elimination
+Version: 1.0.0
+Date: 2024-5-4
+Authors@R: person("Jacob", "Seedorff", , "jacob-seedorff@uiowa.edu", role = c("aut", "cre"))
+Maintainer: Jacob Seedorff <jacob-seedorff@uiowa.edu>
+URL: https://github.com/JacobSeedorff21/fastbackward
+BugReports: https://github.com/JacobSeedorff21/fastbackward/issues
+Description: Performs fast backward elimination.
+License: Apache License (>= 2)
+Encoding: UTF-8
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
