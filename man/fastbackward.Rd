@@ -16,17 +16,16 @@ fastbackward(
 )
 }
 \arguments{
-\item{object}{an object representing a model of an appropriate class
-(mainly "\code{lm}" and "\code{glm}"). This is used as the initial model in the stepwise search.}
+\item{object}{an object representing a model of an appropriate class. This is
+used as the initial model in the stepwise search.}
 
 \item{scope}{defines the range of models examined in the stepwise search. This
 should be missing or a single formula. If a formula is included, all of the
 components on the right-hand-side of the formula are always included in the model.
 If missing, then only the intercept (if included) is always included in the model.}
 
-\item{scale}{used in the definition of the \code{AIC} statistic for selecting the models,
-currently only for \link{lm}, \link{aov} and \link{glm} models. The default value, \code{0}, indicates the
-scale should be estimated: see \link{extractAIC}.}
+\item{scale}{used in the definition of the AIC statistic for selecting the models,
+currently only for \link{lm} and \link{aov} models (see \link{extractAIC} for details).}
 
 \item{trace}{if positive, information is printed during the running of \code{fastbackward}.
 Larger values may give more detailed information. If \code{trace} is greater than 1, then
@@ -61,36 +60,44 @@ performed with a bounding algorithm to make it faster.
 \details{
 The bounding algorithm allows us to avoid fitting models that cannot possibly
 provide an improvement in AIC. At a high-level, the algorithm basically
-works by identifying important predictors that if they are removed from the
-current model then they cannot possibly improve upon the current AIC.
+works by identifying important predictors whose removal from the current model
+cannot possibly improve upon the current AIC.
 
 Test statistics, p-values, and confidence intervals from the final selected
 model are not reliable due to the selection process. Thus, it is not recommended
 to use these quantities.
 
-See more details at \link{step}.
+See more details at \link[MASS:stepAIC]{MASS::stepAIC}.
 }
 \examples{
-# Loading in fastbackward package
+# Loading fastbackward
 library(fastbackward)
 
-# example with lm
-summary(lm1 <- lm(Fertility ~ ., data = swiss))
+# Using examples provided in MASS::stepAIC, but with fastbackward instead
+## aov with quine dataset
+quine.hi <- aov(log(Days + 2.5) ~ .^4, MASS::quine)
+quine.nxt <- update(quine.hi, . ~ . - Eth:Sex:Age:Lrn)
+quine.stp <- fastbackward(quine.nxt, trace = FALSE)
+quine.stp$anova
 
-## step
-slm1 <- step(lm1, direction = "backward")
-summary(slm1)
-slm1$anova
+## lm with cpus dataset
+cpus1 <- MASS::cpus
+for(v in names(MASS::cpus)[2:7])
+ cpus1[[v]] <- cut(MASS::cpus[[v]], unique(quantile(MASS::cpus[[v]])),
+                   include.lowest = TRUE)
+cpus0 <- cpus1[, 2:8]  # excludes names, authors' predictions
+cpus.samp <- sample(1:209, 100)
+cpus.lm <- lm(log10(perf) ~ ., data = cpus1[cpus.samp,2:8])
+cpus.lm2 <- fastbackward(cpus.lm, trace = FALSE)
+cpus.lm2$anova
 
-## fastbackward
-slm1 <- fastbackward(lm1)
-summary(slm1)
-slm1$anova
-
-## fastbackward with trace > 1
-slm1 <- fastbackward(lm1, trace = 2)
+## glm with bwt dataset
+example(birthwt, package = "MASS")
+birthwt.glm <- glm(low ~ ., family = binomial, data = bwt)
+birthwt.step <- fastbackward(birthwt.glm, trace = FALSE)
+birthwt.step$anova
 
 }
 \seealso{
-\link{step}, \link{drop1}, and \link{extractAIC}
+\link[MASS:stepAIC]{MASS::stepAIC}, \link[MASS:dropterm]{MASS::dropterm}, and \link{extractAIC}
 }

@@ -14,8 +14,8 @@ test_that("Testing fastbackward with lm", {
   fullmodel <- lm(y ~ ., data = Data)
 
   ### varying scale
-  #### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  #### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   #### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -24,8 +24,8 @@ test_that("Testing fastbackward with lm", {
   expect_equal(backward, fastbackward1)
 
   ### fixed scale
-  #### step
-  backward <- step(fullmodel, direction = "backward", trace = 0, scale = 2)
+  #### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scale = 2)
 
   #### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0, scale = 2)
@@ -38,8 +38,8 @@ test_that("Testing fastbackward with lm", {
   fullmodel <- lm(y ~ .^2, data = Data)
 
   ### varying scale
-  #### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  #### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   #### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -48,8 +48,8 @@ test_that("Testing fastbackward with lm", {
   expect_equal(backward, fastbackward1)
 
   ### fixed scale
-  #### step
-  backward <- step(fullmodel, direction = "backward", trace = 0, scale = 2)
+  #### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scale = 2)
 
   #### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0, scale = 2)
@@ -74,10 +74,10 @@ test_that("Testing fastbackward with lm", {
   fullmodel <- lm(y ~ ., data = Data)
 
   ### varying scale
-  #### step
-  backward0 <- step(fullmodel, direction = "backward", trace = 0, k = 0)
-  backward10 <- step(fullmodel, direction = "backward", trace = 0, k = 10)
-  backwardlog <- step(fullmodel, direction = "backward", trace = 0, k = log(1000))
+  #### MASS::stepAIC
+  backward0 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 0)
+  backward10 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 10)
+  backwardlog <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = log(1000))
 
   #### fast backward
   fastbackward0 <- fastbackward(fullmodel, trace = 0, k = 0)
@@ -90,10 +90,10 @@ test_that("Testing fastbackward with lm", {
   expect_equal(backwardlog, fastbackwardlog)
 
   ### fixed scale
-  #### step
-  backward0 <- step(fullmodel, direction = "backward", trace = 0, k = 0)
-  backward10 <- step(fullmodel, direction = "backward", trace = 0, k = 10)
-  backwardlog <- step(fullmodel, direction = "backward", trace = 0, k = log(1000))
+  #### MASS::stepAIC
+  backward0 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 0)
+  backward10 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 10)
+  backwardlog <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = log(1000))
 
   #### fast backward
   fastbackward0 <- fastbackward(fullmodel, trace = 0, k = 0)
@@ -110,10 +110,10 @@ test_that("Testing fastbackward with lm", {
   fullmodel <- lm(y ~ .^2, data = Data)
 
   ### varying scale
-  #### step
-  backward0 <- step(fullmodel, direction = "backward", trace = 0, k = 0)
-  backward10 <- step(fullmodel, direction = "backward", trace = 0, k = 10)
-  backwardlog <- step(fullmodel, direction = "backward", trace = 0, k = log(1000))
+  #### MASS::stepAIC
+  backward0 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 0)
+  backward10 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 10)
+  backwardlog <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = log(1000))
 
   #### fast backward
   fastbackward0 <- fastbackward(fullmodel, trace = 0, k = 0)
@@ -126,10 +126,10 @@ test_that("Testing fastbackward with lm", {
   expect_equal(backwardlog, fastbackwardlog)
 
   ### fixed scale
-  #### step
-  backward0 <- step(fullmodel, direction = "backward", trace = 0, k = 0)
-  backward10 <- step(fullmodel, direction = "backward", trace = 0, k = 10)
-  backwardlog <- step(fullmodel, direction = "backward", trace = 0, k = log(1000))
+  #### MASS::stepAIC
+  backward0 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 0)
+  backward10 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = 10)
+  backwardlog <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, k = log(1000))
 
   #### fast backward
   fastbackward0 <- fastbackward(fullmodel, trace = 0, k = 0)
@@ -160,8 +160,8 @@ test_that("Testing fast backward with gamma regression", {
   ### Fitting full model
   fullmodel <- glm(y ~ ., data = Data, family = Gamma(link = "inverse"))
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -173,8 +173,8 @@ test_that("Testing fast backward with gamma regression", {
   Data <- Data[, 1:6]
   fullmodel <- glm(y ~ .^2, data = Data, family = Gamma(link = "inverse"))
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -197,8 +197,8 @@ test_that("Testing fast backward with logistic regression", {
   ### Fitting full model
   fullmodel <- glm(y ~ ., data = Data, family = binomial)
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -210,8 +210,8 @@ test_that("Testing fast backward with logistic regression", {
   Data <- Data[, 1:6]
   fullmodel <- glm(y ~ .^2, data = Data, family = binomial)
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -235,8 +235,8 @@ test_that("Testing fast backward with poisson regression", {
   ### Fitting full model
   fullmodel <- glm(y ~ ., data = Data, family = poisson)
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)
@@ -248,8 +248,8 @@ test_that("Testing fast backward with poisson regression", {
   Data <- Data[, 1:6]
   fullmodel <- glm(y ~ .^2, data = Data, family = poisson)
 
-  ### step
-  backward <- step(fullmodel, direction = "backward", trace = 0)
+  ### MASS::stepAIC
+  backward <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0)
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0)

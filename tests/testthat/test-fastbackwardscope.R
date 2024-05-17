@@ -12,11 +12,11 @@ test_that("Testing scope argument", {
   ### Fitting full model
   fullmodel <- glm(y ~ ., data = Data, family = binomial)
 
-  ### step
-  backward1 <- step(fullmodel, direction = "backward", trace = 0, scope = formula("y ~ 1"))
-  backward2 <- step(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ V3 + V4 + V6")))
-  backward3 <- step(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ .")))
-  backward4 <- step(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ . - V2 - V4 - V11")))
+  ### MASS::stepAIC
+  backward1 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scope = formula("y ~ 1"))
+  backward2 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ V3 + V4 + V6")))
+  backward3 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ .")))
+  backward4 <- MASS::stepAIC(fullmodel, direction = "backward", trace = 0, scope = list("lower" = formula("y ~ . - V2 - V4 - V11")))
 
   ### fast backward
   fastbackward1 <- fastbackward(fullmodel, trace = 0, scope = formula("y ~ 1"))

@@ -6,8 +6,8 @@ output: github_document
 # Overview
 
 **fastbackward** is a package that contains the `fastbackward()` function. This 
-function works similarly to backward elimination with the `step()` function from 
-the **stats** package; except, the `fastbackward()` function makes use of a 
+function works similarly to backward elimination with the `stepAIC()` function from 
+the **MASS** package; except, the `fastbackward()` function makes use of a 
 bounding algorithm to perform backward elimination faster.
 
 # How to install
@@ -21,14 +21,15 @@ devtools::install_github("JacobSeedorff21/fastbackward")
 
 # Usage
 
-Here is a comparison of runtimes with the `step()` function from the 
-**stats** package and the `fastbackward()` function from the **fastbackward** 
+Here is a comparison of runtimes with the `stepAIC()` function from the 
+**MASS** package and the `fastbackward()` function from the **fastbackward** 
 package. This comparison is based upon a randomly generated logistic 
 regression model with 1000 observations and 50 covariates. 
 
 ```{r, warning = FALSE, message = FALSE}
-# Loading in fastbackward
+# Loading in fastbackward and MASS
 library(fastbackward)
+library(MASS)
 
 # Defining function to generate datasets for logistic regression
 LogisticSimul <- function(n, d, Bprob = .5, sd = 1, rho = 0.5){
@@ -63,16 +64,17 @@ fastbackwardTime <- system.time(fastbackward1 <- fastbackward(fullmodel, trace =
 fastbackwardTime
 
 ## Timing step function
-stepTime <- system.time(BackwardStep <- step(fullmodel, direction = "backward", trace = 0))
+stepTime <- system.time(BackwardStep <- stepAIC(fullmodel, direction = "backward", trace = 0))
 stepTime
 
 ```
 
 For this logistic regression model, the fast backward elimination algorithm from 
 the **fastbackward** package was about `r round(stepTime[[3]] / fastbackwardTime[[3]], 2)` 
-times faster than step. The amount of speedup attained from the fast backward elimination
+times faster than stepAIC. The amount of speedup attained from the fast backward elimination
 algorithm depends on the strength of association between the covariates and the 
-response variable. So, speedup will vary depending on the specific problem.
+response variable and the number of covariates. So, speedup will vary depending 
+on the specific problem.
 
 ### Checking results
 
@@ -83,5 +85,5 @@ all.equal(BackwardStep, fastbackward1)
 ```
 
 Hence, the two methods give the same results and the fast backward elimination 
-algorithm is faster than step.
+algorithm is faster than stepAIC.
 
