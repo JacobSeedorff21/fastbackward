@@ -1,4 +1,4 @@
 fastbackward
 ================
 
-Initial submission for fastbackward package.
+Resubmission to fix description file.
