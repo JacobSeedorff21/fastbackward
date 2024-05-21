@@ -7,10 +7,9 @@ Authors@R: person("Jacob", "Seedorff", , "jacob-seedorff@uiowa.edu", role = c("a
 Maintainer: Jacob Seedorff <jacob-seedorff@uiowa.edu>
 URL: https://github.com/JacobSeedorff21/fastbackward
 BugReports: https://github.com/JacobSeedorff21/fastbackward/issues
-Description: Performs fast backward elimination based on Information Criterion. 
-    A bounding algorithm is used to avoid fitting unnecessary models. Designed to work 
-    similarly to the stepAIC function from the 'MASS' package, but is much faster for 
-    backward elimination.
+Description: Performs backward elimination with similar syntax to 
+    the stepAIC function from the 'MASS' package. A bounding algorithm is 
+    used to avoid fitting unnecessary models, making it much faster. 
 License: Apache License (>= 2)
 Encoding: UTF-8
 Suggests: 
