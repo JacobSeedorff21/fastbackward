@@ -1,13 +1,16 @@
 Package: fastbackward
 Type: Package
-Title: Fast Backward Elimination Based on AIC
+Title: Fast Backward Elimination Based on Information Criterion
 Version: 1.0.0
-Date: 2024-5-17
+Date: 2024-5-21
 Authors@R: person("Jacob", "Seedorff", , "jacob-seedorff@uiowa.edu", role = c("aut", "cre"))
 Maintainer: Jacob Seedorff <jacob-seedorff@uiowa.edu>
 URL: https://github.com/JacobSeedorff21/fastbackward
 BugReports: https://github.com/JacobSeedorff21/fastbackward/issues
-Description: Performs fast backward elimination based on AIC. A bounding algorithm is used to avoid fitting unnecessary models.
+Description: Performs fast backward elimination based on Information Criterion. 
+A bounding algorithm is used to avoid fitting unnecessary models. The 
+fastbackward function is intended to work similarly to the stepAIC function from 
+the 'MASS' package, but is much faster for backward elimination.
 License: Apache License (>= 2)
 Encoding: UTF-8
 Suggests: 
