@@ -1,6 +1,12 @@
 fastbackward
 ================
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fastbackward)](https://CRAN.R-project.org/package=fastbackward)
+<!-- badges: end -->
+
 # Overview
 
 **fastbackward** is a package that contains the `fastbackward()`
@@ -65,7 +71,7 @@ fastbackwardTime
 ```
 
     ##    user  system elapsed 
-    ##    2.54    0.41    2.95
+    ##    2.39    0.39    2.83
 
 ``` r
 ## Timing step function
@@ -74,10 +80,10 @@ stepTime
 ```
 
     ##    user  system elapsed 
-    ##    8.67    1.51   10.20
+    ##    9.23    1.39   10.81
 
 For this logistic regression model, the fast backward elimination
-algorithm from the **fastbackward** package was about 3.46 times faster
+algorithm from the **fastbackward** package was about 3.82 times faster
 than stepAIC. The amount of speedup attained from the fast backward
 elimination algorithm depends on the strength of association between the
 covariates and the response variable and the number of covariates. So,

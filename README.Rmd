@@ -3,6 +3,11 @@ title: "fastbackward"
 output: github_document
 ---
 
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/fastbackward)](https://CRAN.R-project.org/package=fastbackward)
+<!-- badges: end -->
+
+
 # Overview
 
 **fastbackward** is a package that contains the `fastbackward()` function. This 
