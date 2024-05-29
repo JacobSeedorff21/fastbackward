@@ -74,7 +74,12 @@
 
 fastbackward <- function (object, scope, scale = 0, trace = 1, keep = NULL,
                   steps = 1000, k = 2, ...) {
-  mydeviance <- function(x, ...) deviance(x) %||% extractAIC(x, k=0)[2L]
+  mydeviance <- function(x, ...) {
+    dev <- deviance(x)
+    if (!is.null(dev))
+      dev
+    else extractAIC(x, k = 0)[2L]
+  }
   cut.string <- function(string) {
     if (length(string) > 1L)
       string[-1L] <- paste("\n", string[-1L], sep = "")
