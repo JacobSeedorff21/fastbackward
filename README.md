@@ -17,7 +17,14 @@ backward elimination faster.
 
 # How to install
 
-It can be installed via the `install_github()` function from the
+**fastbackward** can be installed using the `install.packages()`
+function
+
+``` r
+install.packages("fastbackward")
+```
+
+It can also be installed via the `install_github()` function from the
 **devtools** package.
 
 ``` r
@@ -71,7 +78,7 @@ fastbackwardTime
 ```
 
     ##    user  system elapsed 
-    ##    2.39    0.39    2.83
+    ##    2.42    0.28    2.77
 
 ``` r
 ## Timing step function
@@ -80,10 +87,10 @@ stepTime
 ```
 
     ##    user  system elapsed 
-    ##    9.23    1.39   10.81
+    ##    8.28    1.10    9.53
 
 For this logistic regression model, the fast backward elimination
-algorithm from the **fastbackward** package was about 3.82 times faster
+algorithm from the **fastbackward** package was about 3.44 times faster
 than stepAIC. The amount of speedup attained from the fast backward
 elimination algorithm depends on the strength of association between the
 covariates and the response variable and the number of covariates. So,
